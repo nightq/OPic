@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="compose_image_0" type="id" />
+    <item name="compose_image_1" type="id" />
+    <item name="compose_image_2" type="id" />
+    <item name="compose_image_3" type="id" />
+    <item name="compose_image_4" type="id" />
+    <item name="compose_image_5" type="id" />
+</resources>
