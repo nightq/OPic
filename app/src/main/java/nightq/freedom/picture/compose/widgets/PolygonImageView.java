@@ -84,8 +84,8 @@ public class PolygonImageView extends ImageView implements View.OnTouchListener{
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == ACTION_DOWN) {
-            if (mPath != null && mRegion != null
-                    && mRegion.contains(
+            if (mPath == null || mRegion == null
+                    || mRegion.contains(
                     (int)motionEvent.getX(),
                     (int)motionEvent.getY())) {
                 processTouch(view, motionEvent);

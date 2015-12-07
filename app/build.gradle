@@ -26,4 +26,6 @@ dependencies {
     compile 'com.android.support:design:23.1.0'
     compile 'com.commit451:PhotoView:1.2.4'
     compile 'com.google.code.gson:gson:2.5'
+    compile files('libs/androidsvg-1.2.1.jar')
+//    compile 'com.eftimoff:android-pathview:1.0.6@aar'
 }

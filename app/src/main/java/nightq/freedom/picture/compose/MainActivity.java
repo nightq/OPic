@@ -1,5 +1,6 @@
 package nightq.freedom.picture.compose;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,6 +14,7 @@ import nightq.freedom.picture.R;
 import nightq.freedom.picture.compose.enums.ComposeType;
 import nightq.freedom.picture.compose.widgets.ComposeLayout;
 import nightq.freedom.picture.compose.widgets.PolygonImageView;
+import nightq.freedom.picture.svg.MainSvgActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        findViewById(R.id.tvNext1).setOnClickListener(this);
         findViewById(R.id.tvNextPosition).setOnClickListener(this);
         findViewById(R.id.tvNextCount).setOnClickListener(this);
+        findViewById(R.id.fab).setOnClickListener(this);
 //
 //        image1 = ((PolygonImageView) findViewById(R.id.image1));
 //        image2 = ((PolygonImageView) findViewById(R.id.image2));
@@ -77,6 +80,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         break;
                 }
                 findViewById(R.id.tvNextPosition).performClick();
+                break;
+
+            case R.id.fab:
+                startActivity(new Intent(this, MainSvgActivity.class));
+                finish();
                 break;
         }
     }
