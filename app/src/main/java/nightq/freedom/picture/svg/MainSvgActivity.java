@@ -1,16 +1,17 @@
 package nightq.freedom.picture.svg;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.VectorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
-import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import com.eftimoff.androipathview.PathView;
+import android.widget.Toast;
 
 import nightq.freedom.picture.R;
 import nightq.freedom.picture.compose.MainActivity;
@@ -28,8 +29,6 @@ public class MainSvgActivity extends AppCompatActivity
 
     public ImageView imageView;
 
-    public PathView pathView;
-
     public LinearLayout pathViewLayout;
 
     @Override
@@ -38,19 +37,6 @@ public class MainSvgActivity extends AppCompatActivity
         setContentView(R.layout.activity_svg_main);
 
         pathViewLayout = (LinearLayout) findViewById(R.id.pathViewLayout);
-
-        pathView = (PathView) findViewById(R.id.pathView);
-
-        pathView.getPathAnimator()
-                .delay(100)
-                .duration(500)
-//                .listenerStart(new AnimationListenerStart())
-//                .listenerEnd(new AnimationListenerEnd())
-                .interpolator(new AccelerateDecelerateInterpolator())
-                .start();
-        pathView.useNaturalColors();
-        pathView.setFillAfter(true);
-        pathView.setVisibility(View.GONE);
 
         imageView = (ImageView) findViewById(R.id.imageView);
         new PhotoViewAttacher(imageView);
@@ -64,6 +50,9 @@ public class MainSvgActivity extends AppCompatActivity
         findViewById(R.id.fab).setOnClickListener(this);
         findViewById(R.id.fab).setOnLongClickListener(this);
         findViewById(R.id.tvCommit).setOnLongClickListener(this);
+
+//        VectorDrawable vectorDrawable = (VectorDrawable) getResources().getDrawable(R.drawable.bubble);
+
     }
 
     @Override
@@ -78,30 +67,18 @@ public class MainSvgActivity extends AppCompatActivity
 //                } catch (Exception e) {
 //                }
 //
-//                try {
-//                    LinearLayout.LayoutParams ll = (LinearLayout.LayoutParams) imageView.getLayoutParams();
-//                    ll.width = Integer.valueOf(editTextX.getText().toString());
-//                    ll.height = Integer.valueOf(editTextY.getText().toString());
-//                    imageView.setLayoutParams(ll);
-//                } catch (Exception e) {
-//                }
-
-                refreshNewPathView();
                 try {
-                    LinearLayout.LayoutParams ll = (LinearLayout.LayoutParams) pathView.getLayoutParams();
+                    LinearLayout.LayoutParams ll = (LinearLayout.LayoutParams) imageView.getLayoutParams();
                     ll.width = Integer.valueOf(editTextX.getText().toString());
                     ll.height = Integer.valueOf(editTextY.getText().toString());
-                    pathView.setLayoutParams(ll);
+                    imageView.setLayoutParams(ll);
                 } catch (Exception e) {
                 }
 
-                pathView.getPathAnimator()
-                        .delay(100)
-                        .duration(500)
-//                .listenerStart(new AnimationListenerStart())
-//                .listenerEnd(new AnimationListenerEnd())
-                        .interpolator(new AccelerateDecelerateInterpolator())
-                        .start();
+//                Drawable drawable = imageView.getBackground();
+//                if (drawable != null && drawable instanceof VectorDrawable) {
+//                    Log.e("nightq", "drawable = " + drawable);
+//                }
                 break;
             case R.id.fab:
                 startActivity(new Intent(this, MainActivity.class));
@@ -123,50 +100,41 @@ public class MainSvgActivity extends AppCompatActivity
             R.raw.settings,
             R.raw.bubbl
     };
+
+    public int[] resDrawableIds = {
+            R.drawable.bubble,
+            R.drawable.bubble1,
+            R.drawable.bubble2
+//            R.drawable.bubble3,
+//            R.drawable.bubble4
+//            R.drawable.heart
+//            R.drawable.reven
+    };
+
     @Override
     public boolean onLongClick(View view) {
         switch (view.getId()) {
             case R.id.fab:
-
-                editTextX.setText("" + 200);
-                editTextY.setText("" + 200);
+//
+//                editTextX.setText("" + 200);
+//                editTextY.setText("" + 200);
                 tvCommit.performClick();
                 break;
 
             case R.id.tvCommit:
-
                 count ++;
-                count = count % resIds.length;
-
-                refreshNewPathView();
-
-
-                pathView.getPathAnimator()
-                        .delay(100)
-                        .duration(500)
-//                .listenerStart(new AnimationListenerStart())
-//                .listenerEnd(new AnimationListenerEnd())
-                        .interpolator(new AccelerateDecelerateInterpolator())
-                        .start();
+                count = count % resDrawableIds.length;
+//                imageView.setImageResource(resDrawableIds[count]);
+                imageView.setBackgroundResource(resDrawableIds[count]);
+                Toast.makeText(MainSvgActivity.this, "count = " + count, Toast.LENGTH_SHORT).show();
                 break;
         }
         return true;
     }
 
-    public void refreshNewPathView () {
-        pathViewLayout.removeAllViews();
-
-        pathView = new PathView(this, null);
-
-        pathView.setFillAfter(true);
-        pathView.useNaturalColors();
-        pathView.setPathWidth(0.00000001f);
-//        pathView.setPathWidth(0);
-        pathView.setSvgResource(resIds[count]);
-
-        pathViewLayout.addView(pathView,
-                new LinearLayout.LayoutParams(300, 300));
+    public void refreshView () {
     }
+
 
 
 }

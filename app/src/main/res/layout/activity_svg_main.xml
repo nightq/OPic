@@ -17,7 +17,8 @@
             android:layout_width="300dp"
             android:layout_height="300dp"
             android:layout_gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
         </LinearLayout>
 
@@ -34,10 +35,10 @@
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/bubble"
-            android:src="@drawable/bubble"
-            android:visibility="gone" />
+            android:visibility="visible" />
 
+        <!--android:background="@android:color/holo_blue_light"-->
+        <!--android:src="@drawable/bubble"-->
         <EditText
             android:id="@+id/editText"
             android:layout_width="wrap_content"
@@ -54,7 +55,7 @@
             android:layout_marginTop="10dp"
             android:background="@android:color/holo_blue_light"
             android:gravity="center"
-            android:text="x" />
+            android:text="1080" />
 
         <EditText
             android:id="@+id/editTextY"
@@ -63,7 +64,7 @@
             android:layout_marginTop="10dp"
             android:background="@android:color/holo_blue_light"
             android:gravity="center"
-            android:text="y" />
+            android:text="1080" />
 
         <TextView
             android:id="@+id/tvCommit"

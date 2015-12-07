@@ -111,7 +111,7 @@ public class PathView extends View implements SvgUtils.AnimationStepListener {
      */
     public PathView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        paint.setStyle(Paint.Style.STROKE);
+//        paint.setStyle(Paint.Style.STROKE);
         getFromAttributes(context, attrs);
     }
 
@@ -126,7 +126,7 @@ public class PathView extends View implements SvgUtils.AnimationStepListener {
         try {
             if (a != null) {
                 paint.setColor(a.getColor(R.styleable.PathView_pathColor, 0xff00ff00));
-                paint.setStrokeWidth(a.getDimensionPixelSize(R.styleable.PathView_pathWidth, 8));
+//                paint.setStrokeWidth(a.getDimensionPixelSize(R.styleable.PathView_pathWidth, 8));
                 svgResourceId = a.getResourceId(R.styleable.PathView_svg, 0);
             }
         } finally {
