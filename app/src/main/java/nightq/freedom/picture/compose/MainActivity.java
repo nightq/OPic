@@ -12,6 +12,7 @@ import android.view.View;
 
 import nightq.freedom.picture.R;
 import nightq.freedom.picture.compose.enums.ComposeType;
+import nightq.freedom.picture.compose.utils.ComposeModelsUtils;
 import nightq.freedom.picture.compose.widgets.ComposeLayout;
 import nightq.freedom.picture.compose.widgets.PolygonImageView;
 import nightq.freedom.picture.svg.MainSvgActivity;
@@ -58,12 +59,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //            case R.id.tvNext2:
 //                break;
             case R.id.tvNextPosition:
-                if (defaultType == ComposeType.ComposeTwoPic) {
-                    defaultPos ++;
-                    defaultPos = defaultPos % 2;
-                } else {
-                    defaultPos = 0;
-                }
+                int total = ComposeModelsUtils.getComposeModelsTotal(this, defaultType);
+                defaultPos ++;
+                defaultPos = defaultPos%total;
                 ((ComposeLayout) findViewById(R.id.composelayout))
                         .setComposeType(defaultType, defaultPos);
                 break;

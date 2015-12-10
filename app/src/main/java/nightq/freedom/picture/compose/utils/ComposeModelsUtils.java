@@ -10,6 +10,7 @@ import java.io.Reader;
 import java.util.HashMap;
 import java.util.List;
 
+import nightq.freedom.picture.compose.enums.ComposeType;
 import nightq.freedom.picture.compose.models.ComposeModel;
 
 /**
@@ -23,6 +24,7 @@ public class ComposeModelsUtils {
      * 版式 raw 文件名
      */
     public static final String Compose_File = "compose";
+    public static final String Compose_File_2 = "compose2";
     /**
      * 两张图的版式key
      */
@@ -56,7 +58,8 @@ public class ComposeModelsUtils {
         }
         try {
             int resId = context.getResources().getIdentifier(
-                    Compose_File, "raw",
+                    Compose_File_2, //Compose_File,
+                    "raw",
                     context.getPackageName());
             if (resId <= 0) {
                 //NOTHING
@@ -89,4 +92,44 @@ public class ComposeModelsUtils {
         }
         return composeModelsCache.get(key);
     }
+
+    /**
+     * 通过版式图片数量取版式列表
+     *
+     * @param context
+     * @return
+     */
+    public static int getComposeModelsTotal(
+            Context context, ComposeType composeType) {
+        getComposeModelsFromRaw(context);
+        if (composeModelsCache == null) {
+            throw new IllegalArgumentException();
+        }
+        return composeModelsCache
+                .get(getModeStringFromComposeType(composeType))
+                .size();
+    }
+
+    /**
+     * get mode string from int type
+     * @param composeType
+     * @return
+     */
+    private static String getModeStringFromComposeType (ComposeType composeType) {
+        String composeTypeKey;
+        switch (composeType) {
+            case ComposeFourPic:
+                composeTypeKey = ComposeModelsUtils.Compose_Pic_Four;
+                break;
+            case ComposeThreePic:
+                composeTypeKey = ComposeModelsUtils.Compose_Pic_Three;
+                break;
+            case ComposeTwoPic:
+            default:
+                composeTypeKey = ComposeModelsUtils.Compose_Pic_Two;
+                break;
+        }
+        return composeTypeKey;
+    }
+
 }
