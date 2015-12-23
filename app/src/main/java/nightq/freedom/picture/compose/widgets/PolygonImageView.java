@@ -77,6 +77,7 @@ public class PolygonImageView extends ImageView implements View.OnTouchListener{
         if (mPath != null) {
             canvas.clipPath(mPath);
             canvas.drawColor(Color.TRANSPARENT);
+//            canvas.drawColor(Color.RED);
         }
         super.onDraw(canvas);
     }

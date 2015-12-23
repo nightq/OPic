@@ -21,7 +21,24 @@
             android:id="@+id/composelayout"
             android:layout_width="300dp"
             android:layout_height="300dp"
-            android:background="@android:color/holo_blue_bright" />
+            android:background="@android:color/holo_blue_bright"
+            android:visibility="gone" />
+
+        <nightq.freedom.picture.compose.widgets.ComposeView
+            android:id="@+id/composeView"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:background="@android:color/holo_blue_bright"
+            android:visibility="gone" />
+
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="300dp"
+            android:layout_height="400dp"
+            android:background="@android:color/holo_blue_bright"
+            android:src="@mipmap/ic_launcher"
+            />
 
         <TextView
             android:id="@+id/tvNextPosition"
